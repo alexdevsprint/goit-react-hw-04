@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 
-import LoadMoreBtn from './components/LoadMoreBtn';
+import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import Loader from './components/Loader/Loader';
