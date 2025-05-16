@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div>
-      <h1>Галерея</h1>
+      <h1>Gallery</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {photos.map(photo => (
