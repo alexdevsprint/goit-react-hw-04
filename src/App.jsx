@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+import { Toaster } from 'react-hot-toast';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
@@ -42,11 +43,11 @@ function App() {
           <img key={photo.id} src={photo.urls.small} alt={photo.alt_description} style={{ width: '200px', margin: '10px' }} />
         ))}
       </div>
+      <SearchBar propSubmit='hello' />
+      <Toaster />
     </div>
   );
+  
 };
-
-
-
 
 export default App
