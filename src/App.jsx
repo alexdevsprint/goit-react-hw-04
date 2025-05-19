@@ -51,12 +51,18 @@ function App() {
 
     async function getData() {
       try {
+        setIsError(false);
+        setIsLoading(true);
         const data = await fetchData(query, currentPage, PER_PAGE);
 
         setPhotos((prevPhotos) => {
           return [...prevPhotos, ...data.results];
         });
-      } catch (error) {}
+      } catch {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     getData();
@@ -76,15 +82,3 @@ function App() {
 }
 
 export default App;
-
-// try {
-//       setIsError(false);
-//       setPhotos([]);
-//       setIsLoading(true);
-//       const data = await fetchData(newQuery, 1, 12);
-//       setPhotos(data.results);
-//     } catch {
-//       setIsError(true);
-//     } finally {
-//       setIsLoading(false);
-//     }
