@@ -16,8 +16,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  const PER_PAGE = 12;
   // useEffect(() => {
   //   const loadPhotos = async () => {
   //     try {
@@ -34,17 +36,30 @@ function App() {
 
   const handleSearchSubmit = async (newQuery) => {
     setQuery(newQuery);
+    setCurrentPage(1);
+    setPhotos([]);
   };
 
   const handleLoadMoreClick = () => {
-    setCurrentPage(currentPage + 1);    
-  }
+    setCurrentPage(currentPage + 1);
+  };
 
   useEffect(() => {
-    if (query === '') {
+    if (query === "") {
       return;
     }
-    console.log(query, currentPage);
+
+    async function getData() {
+      try {
+        const data = await fetchData(query, currentPage, PER_PAGE);
+
+        setPhotos((prevPhotos) => {
+          return [...prevPhotos, ...data.results];
+        });
+      } catch (error) {}
+    }
+
+    getData();
   }, [query, currentPage]);
 
   return (
@@ -54,14 +69,13 @@ function App() {
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {photos.length > 0 && <ImageGallery photos={photos} />}
-      <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick}/>
+      <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick} />
       <Toaster />
     </div>
   );
 }
 
 export default App;
-
 
 // try {
 //       setIsError(false);
