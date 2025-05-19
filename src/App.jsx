@@ -71,11 +71,11 @@ function App() {
   return (
     <div className={css.container}>
       <h1>Gallery</h1>
-      <SearchBar onSearchSubmit={handleSearchSubmit} />
-      {isLoading && <Loader />}
+      <SearchBar onSearchSubmit={handleSearchSubmit} />      
       {isError && <ErrorMessage />}
-      {photos.length > 0 && <ImageGallery photos={photos} />}
-      <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick} />
+      {photos.length > 0 && <ImageGallery photos={photos} />}      
+      {isLoading && <Loader />}
+      {photos.length > 0 && !isLoading && <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick} />}
       <Toaster />
     </div>
   );
