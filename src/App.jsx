@@ -16,6 +16,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  const [query, setQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
   // useEffect(() => {
   //   const loadPhotos = async () => {
   //     try {
@@ -31,18 +33,19 @@ function App() {
   // }, []);
 
   const handleSearchSubmit = async (newQuery) => {
-    try {
-      setIsError(false);
-      setPhotos([]);
-      setIsLoading(true);
-      const data = await fetchData(newQuery, 1, 12);
-      setPhotos(data.results);
-    } catch {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
+    setQuery(newQuery);
   };
+
+  const handleLoadMoreClick = () => {
+    setCurrentPage(currentPage + 1);    
+  }
+
+  useEffect(() => {
+    if (query === '') {
+      return;
+    }
+    console.log(query, currentPage);
+  }, [query, currentPage]);
 
   return (
     <div className={css.container}>
@@ -51,9 +54,23 @@ function App() {
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {photos.length > 0 && <ImageGallery photos={photos} />}
+      <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick}/>
       <Toaster />
     </div>
   );
 }
 
 export default App;
+
+
+// try {
+//       setIsError(false);
+//       setPhotos([]);
+//       setIsLoading(true);
+//       const data = await fetchData(newQuery, 1, 12);
+//       setPhotos(data.results);
+//     } catch {
+//       setIsError(true);
+//     } finally {
+//       setIsLoading(false);
+//     }
