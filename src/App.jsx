@@ -18,6 +18,7 @@ function App() {
 
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const PER_PAGE = 12;
   // useEffect(() => {
@@ -54,10 +55,12 @@ function App() {
         setIsError(false);
         setIsLoading(true);
         const data = await fetchData(query, currentPage, PER_PAGE);
+        console.log(data);
 
         setPhotos((prevPhotos) => {
           return [...prevPhotos, ...data.results];
         });
+        setTotalPages(data.total_pages);
       } catch {
         setIsError(true);
       } finally {
@@ -75,7 +78,7 @@ function App() {
       {isError && <ErrorMessage />}
       {photos.length > 0 && <ImageGallery photos={photos} />}      
       {isLoading && <Loader />}
-      {photos.length > 0 && !isLoading && <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick} />}
+      {photos.length > 0 && !isLoading && currentPage < totalPages && <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick} />}
       <Toaster />
     </div>
   );
