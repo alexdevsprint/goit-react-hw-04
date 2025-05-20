@@ -15,8 +15,10 @@ export default function SearchBar({ onSearchSubmit }) {
     form.reset();
   };
 
-  return (
-    <header>
+  return (    
+    <header className={css.header}>
+      <div className={css.container}>
+      <h1 className={css.gallaryTitle}>Gallery</h1>
       <form className={css.searchForm} onSubmit={handleFormSubmit}>
         <input
           type="text"
@@ -27,6 +29,7 @@ export default function SearchBar({ onSearchSubmit }) {
         />
         <button type="submit">Search</button>
       </form>
+      </div>
     </header>
   );
 }

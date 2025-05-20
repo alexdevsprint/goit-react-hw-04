@@ -13,7 +13,7 @@ import { fetchData } from "./components/api";
 
 function App() {
   const [photos, setPhotos] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const [query, setQuery] = useState("");
@@ -61,7 +61,7 @@ function App() {
     getData();
   }, [query, currentPage]);
 
-   const openModal = (pic) => {
+  const openModal = (pic) => {
     setSelectedImage(pic);
     setModalIsOpen(true);
   };
@@ -72,14 +72,17 @@ function App() {
   };
 
   return (
-    <div className={css.container}>
-      <h1 className={css.gallaryTitle}>Gallery</h1>
-      <SearchBar onSearchSubmit={handleSearchSubmit} />      
+    <div>      
+      <SearchBar onSearchSubmit={handleSearchSubmit} />
       {isError && <ErrorMessage />}
-      {photos.length > 0 && <ImageGallery photos={photos} onImageClick={openModal}/>}      
+      {photos.length > 0 && (
+        <ImageGallery photos={photos} onImageClick={openModal} />
+      )}
       {isLoading && <Loader />}
-      {photos.length > 0 && !isLoading && currentPage < totalPages && <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick} />}
-      
+      {photos.length > 0 && !isLoading && currentPage < totalPages && (
+        <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick} />
+      )}
+
       <ImageModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

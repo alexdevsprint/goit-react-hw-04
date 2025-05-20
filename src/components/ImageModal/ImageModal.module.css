@@ -29,10 +29,9 @@
   border-radius: 10px;
 }
 
-
 @media screen and (min-width: 1200px) {
   .modalImg {
-  width: 600px; 
-  height: 600px; 
-}
+    width: 600px;
+    height: 600px;
+  }
 }

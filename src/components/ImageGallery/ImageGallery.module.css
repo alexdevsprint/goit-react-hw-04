@@ -1,8 +1,13 @@
-.imageGalleryList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 20px;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
+.imageGalleryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
