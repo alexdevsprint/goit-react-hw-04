@@ -7,7 +7,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-import ImageModar from "./components/ImageModal/ImageModal";
+import ImageModal from "./components/ImageModal/ImageModal";
 
 import { fetchData } from "./components/api";
 
@@ -19,6 +19,9 @@ function App() {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const PER_PAGE = 12;
   // useEffect(() => {
@@ -71,14 +74,31 @@ function App() {
     getData();
   }, [query, currentPage]);
 
+   const openModal = (pic) => {
+    setSelectedImage(pic);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedImage(null);
+  };
+
   return (
     <div className={css.container}>
       <h1>Gallery</h1>
       <SearchBar onSearchSubmit={handleSearchSubmit} />      
       {isError && <ErrorMessage />}
-      {photos.length > 0 && <ImageGallery photos={photos} />}      
+      {photos.length > 0 && <ImageGallery photos={photos} onImageClick={openModal}/>}      
       {isLoading && <Loader />}
       {photos.length > 0 && !isLoading && currentPage < totalPages && <LoadMoreBtn onLoadMoreClick={handleLoadMoreClick} />}
+      
+      <ImageModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        image={selectedImage}
+      />
+
       <Toaster />
     </div>
   );
