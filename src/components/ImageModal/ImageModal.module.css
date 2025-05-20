@@ -21,3 +21,18 @@
   border-radius: 8px;
   outline: none;
 }
+
+.modalImg {
+  width: 375px;
+  height: 375px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+@media screen and (min-width: 1200px) {
+  .modalImg {
+  width: 600px; 
+  height: 600px; 
+}
+}

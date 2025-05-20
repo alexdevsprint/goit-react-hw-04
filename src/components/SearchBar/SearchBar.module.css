@@ -1,0 +1,22 @@
+.searchForm {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.searchForm input, .searchForm button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;     
+}
+
+.searchForm button {
+    color: white;
+        background-image: linear-gradient(140deg, #c1b8e0, #8e82bd);
+}
+
+.searchForm button:hover {
+    background: #c1b8e0;
+}

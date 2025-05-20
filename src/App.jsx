@@ -13,7 +13,7 @@ import { fetchData } from "./components/api";
 
 function App() {
   const [photos, setPhotos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   const [query, setQuery] = useState("");
@@ -24,19 +24,6 @@ function App() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const PER_PAGE = 12;
-  // useEffect(() => {
-  //   const loadPhotos = async () => {
-  //     try {
-  //       const data = await fetchData('mountains', 1, 12);
-  //       setPhotos(data.results);
-  //     } catch (err) {
-  //       setError('Не удалось загрузить фото');
-  //       console.error(err);
-  //     }
-  //   };
-
-  //   loadPhotos();
-  // }, []);
 
   const handleSearchSubmit = async (newQuery) => {
     setQuery(newQuery);
@@ -86,7 +73,7 @@ function App() {
 
   return (
     <div className={css.container}>
-      <h1>Gallery</h1>
+      <h1 className={css.gallaryTitle}>Gallery</h1>
       <SearchBar onSearchSubmit={handleSearchSubmit} />      
       {isError && <ErrorMessage />}
       {photos.length > 0 && <ImageGallery photos={photos} onImageClick={openModal}/>}      

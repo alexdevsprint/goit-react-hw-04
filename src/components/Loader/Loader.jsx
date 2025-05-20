@@ -1,10 +1,11 @@
 import css from './Loader.module.css'
-import { ClipLoader } from 'react-spinners';
+import { ClipLoader} from 'react-spinners';
 
 export default function Loader() {
     return (
         <div className={css.loader}>
-            <ClipLoader color="#3f51b5" size={48} />
+            <ClipLoader color="#8e82bd" size={50} />
+          
         </div>
     )
 }

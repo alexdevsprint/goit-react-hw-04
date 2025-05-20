@@ -17,7 +17,7 @@ export default function SearchBar({ onSearchSubmit }) {
 
   return (
     <header>
-      <form onSubmit={handleFormSubmit}>
+      <form className={css.searchForm} onSubmit={handleFormSubmit}>
         <input
           type="text"
           name="searchQuery"

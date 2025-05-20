@@ -1,0 +1,12 @@
+.loadMoreBtn {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #fff;
+  background-image: linear-gradient(140deg, #c1b8e0, #8e82bd);
+}
+
+.loadMoreBtn:hover {
+  background: #c1b8e0;
+}
